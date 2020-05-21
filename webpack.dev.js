@@ -8,12 +8,36 @@ module.exports = {
     mode: 'development',
     devtool: 'source-map',
     stats: 'verbose',
+    output: {
+        libraryTarget: 'var',
+        library: 'Client'
+    },
     module: {
         rules: [
             {
                 test: '/\.js$/',
                 exclude: /node_modules/,
                 loader: "babel-loader"
+            },
+            {
+                test: '/\.css/',
+                exclude: /node_modules/,
+                use: ['style-loader','css-loader']
+            },
+            {
+                test: '/\.css/',
+                include: /node_modules/,
+                use: ['style-loader','css-loader']
+            },
+            {
+                test: '/\.scss/',
+                exclude: /node_modules/,
+                use: ['style-loader','css-loader','sass-loader']
+            },
+            {
+                test: '/\.scss/',
+                include: /node_modules/,
+                use: ['style-loader','css-loader','sass-loader']
             }
         ]
     },
