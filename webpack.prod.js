@@ -5,14 +5,16 @@ const HtmlWebPackPlugin = require("html-webpack-plugin")
 //Inline Styles are very slow,so better use this plugin and the loader
 const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 //To optimize CSS files
-const TerserPlugin = require('terser-webpack-plugin');
-const OptimizeCSSWebpackPlugin = require('optimize-css-webpack-plugin');
+const TerserWebpackPlugin = require('terser-webpack-plugin');
+const OptimizeCSSAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
+
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
     entry: './src/client/index.js',
     mode: 'production',
     optimization: {
-        minimize: [new TerserPlugin({}),new OptimizeCSSWebpackPlugin({})]
+        minimizer: [new TerserWebpackPlugin({}),new OptimizeCSSAssetsWebpackPlugin({})]
     },
     output: {
         libraryTarget: 'var',
@@ -26,15 +28,15 @@ module.exports = {
                 loader: "babel-loader"
             },
             {
-                test: '/\.css/',
+                test: /\.css$/,
                 exclude: /node_modules/,
                 use: [MiniCSSExtractPlugin.loader,'css-loader']
             },
             {
-                test: '/\.scss/',
+                test: /\.scss$/,
                 exclude: /node_modules/,
                 use: [MiniCSSExtractPlugin.loader,'css-loader','sass-loader']
-            },
+            }
         ]
     },
     plugins: [

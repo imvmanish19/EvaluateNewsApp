@@ -11,20 +11,20 @@ var textapi = new aylien({
     application_key: process.env.API_KEY_ALY
 });
 
+
 const app = express()
 
-app.use(express.static('src'))
+app.use(express.static('dist'))
 
 console.log(__dirname)
 
 app.get('/', function (req, res) {
-    // res.sendFile('dist/index.html')
-    res.sendFile(path.resolve('../client/views/index.html'))
+    res.sendFile('index.html')
 })
 
 // designates what port the app will listen to for incoming requests
-app.listen(8081, function () {
-    console.log('Example app listening on port 8081!')
+app.listen(3000, function () {
+    console.log('Example app listening on port 3000!')
 })
 
 app.get('/test', function (req, res) {

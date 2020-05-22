@@ -12,3 +12,14 @@ section {
     max-width: 800px;
     margin: 50px auto;
 }
+
+section {
+    &.evaluate {
+        h1 {
+            color: crimson;
+            font-size: 40px;
+            margin-left: 600px;
+        }
+    }
+    margin-right: 30px;
+}

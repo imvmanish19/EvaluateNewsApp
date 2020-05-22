@@ -2,4 +2,14 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 10px 40px;
+    flex-direction: column;
+}
+
+header {
+    h1 {
+        color: crimson;
+        background-color: aliceblue;
+        font-size: 50px;
+        text-align: center;
+    }
 }
