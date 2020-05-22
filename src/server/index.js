@@ -4,6 +4,16 @@ var path = require('path')
 const express = require('express')
 var aylien = require("aylien_textapi");
 const mockAPIResponse = require('./mockAPI.js')
+let bodyParser = require('body-parser')
+let cors = require('cors');
+
+const app = express()
+//Configuring Body Parser
+app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+
+//Configuring Cors
+app.use(cors())
 
 // set aylien API credentias
 var textapi = new aylien({
@@ -12,7 +22,8 @@ var textapi = new aylien({
 });
 
 
-const app = express()
+
+
 
 app.use(express.static('dist'))
 
@@ -30,3 +41,13 @@ app.listen(3000, function () {
 app.get('/test', function (req, res) {
     res.send(mockAPIResponse)
 })
+
+app.post('/urlEvaluater',(req,res) => {
+    console.log(req.body);
+    const {text} = req.body;
+    console.log('Post Request for /urlEvaluater End Point',text);
+    textapi.sentiment({"url": text},(error, result, remaining) => {
+        console.log("Aylien POST Request Received");
+        res.send(result);
+    });
+});

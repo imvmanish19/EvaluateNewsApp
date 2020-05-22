@@ -7,7 +7,6 @@ const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
 //To optimize CSS files
 const TerserWebpackPlugin = require('terser-webpack-plugin');
 const OptimizeCSSAssetsWebpackPlugin = require('optimize-css-assets-webpack-plugin');
-
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 module.exports = {
@@ -23,7 +22,7 @@ module.exports = {
     module: {
         rules: [
             {
-                test: '/\.js$/',
+                test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
             },
@@ -46,6 +45,7 @@ module.exports = {
         }),
         new MiniCSSExtractPlugin({
             filename: '[name].css'
-        })
+        }),
+        new WorkboxPlugin.GenerateSW()
     ]
 }
