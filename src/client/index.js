@@ -1,4 +1,4 @@
-import {handleSubmit} from './js/aylienAPI'
+import {handleSubmit} from './js/aylienAPI';
 
 import './styles/base.scss';
 import './styles/footer.scss';
