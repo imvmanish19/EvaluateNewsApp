@@ -1,7 +1,4 @@
-let baseURL = 'https://api.aylien.com/api/v1/classify';
-
-function handleSubmit(event) {
-    event.preventDefault();
+function handleSubmitFunction() {
     const url = document.getElementById('url-entered').value;
     let urlObj = {
         text: url
@@ -40,4 +37,6 @@ function handleSubmit(event) {
     })
 }
 
-export {handleSubmit}
+
+export {handleSubmitFunction}
+module.exports = handleSubmitFunction;
